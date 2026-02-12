@@ -1,26 +1,114 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #f6f1eb; /* base hueso suave */
+  --cream-soft: #e8ddcf; /* beige claro secundario */
+  --wine: #6a5c52; /* acento neutro inspirado en logo */
+  --wine-strong: #4a413a; /* acento principal oscuro */
+  --gold: #bfa47a; /* detalle metalizado cálido */
+  --text: #3a332f; /* texto gris tostado */
+  --footer-bg: #f6f1eb; /* mismo fondo que la página */
+  --footer-text: #4a413a; /* texto y líneas footer */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.animate-slide-in-left {
+  animation: slideInLeft 0.7s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  font-family: var(--font-body), sans-serif;
+}
+
+/* Scrollbar en paleta del sitio */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--wine-strong) var(--cream);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wine-strong);
+  border-radius: 9999px;
+  border: 2px solid var(--cream);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wine);
+}
+
+.wave-motion {
+  animation: waveFloat 7s ease-in-out infinite;
+}
+
+@keyframes waveFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lineReveal {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  30% {
+    opacity: 1;
+    transform: scaleX(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.hero-line {
+  transform-origin: center;
+  animation: lineReveal 1s ease forwards;
 }
