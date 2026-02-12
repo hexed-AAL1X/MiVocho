@@ -281,6 +281,21 @@ export default function Home() {
     };
   }, [lang, reviewList.length]);
 
+  useEffect(() => {
+    const handler = (event: Event) => {
+      const anchor = event.currentTarget as HTMLAnchorElement;
+      const href = anchor.getAttribute("href");
+      if (!href || !href.startsWith("#")) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    const anchors = Array.from(document.querySelectorAll('a[href^="#"]')) as HTMLAnchorElement[];
+    anchors.forEach((a) => a.addEventListener("click", handler));
+    return () => anchors.forEach((a) => a.removeEventListener("click", handler));
+  }, []);
+
   const handlePrevReview = () => {
     setCurrentReview((prev) => (prev - 1 + reviewList.length) % reviewList.length);
     if (reviewTimerRef.current) {
@@ -327,7 +342,7 @@ export default function Home() {
     };
   }, []);
 
-  const headerClass = `fixed inset-x-0 top-0 z-40 backdrop-blur-sm transition-colors duration-300 ${
+  const headerClass = `fixed inset-x-0 top-0 z-40 backdrop-blur-sm transition-colors duration-300 select-none ${
     scrolled
       ? "border-b border-[var(--footer-text)]/25 bg-[var(--cream)]/95"
       : "border-b border-transparent bg-gradient-to-b from-black/10 via-black/5 to-transparent"
@@ -349,7 +364,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-3 md:px-5 md:py-4 lg:px-7">
           <div className="flex items-center gap-3">
             <div className="relative h-14 w-40 shrink-0 md:h-[72px] md:w-[208px]">
-              <Image src="/mivocho2.webp" alt="Mi Vocho" fill className={logoClass} priority sizes="200px" />
+              <Image src="/mivocho2.webp" alt="Mi Vocho" fill className={logoClass} priority sizes="200px" draggable={false} />
             </div>
           </div>
           <nav className={`hidden items-center text-[0.72rem] font-semibold uppercase tracking-[0.18em] ${navTextColor} md:ml-8 md:flex ml-4`}>
@@ -438,7 +453,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section id="hero" className="relative h-[102vh] min-h-[940px] w-full overflow-hidden bg-[var(--cream)] pb-12 md:h-[110vh] md:min-h-[1100px] md:pb-16">
+      <section id="hero" className="relative h-[102vh] min-h-[940px] w-full overflow-hidden bg-[var(--cream)] pb-12 md:h-[110vh] md:min-h-[1100px] md:pb-16 select-none">
         <div ref={heroTopRef} className="absolute top-[25%] h-1 w-px" aria-hidden />
         <Image
           src="/fondo.webp"
@@ -446,6 +461,7 @@ export default function Home() {
           fill
           sizes="100vw"
           className="object-cover"
+          draggable={false}
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
@@ -462,6 +478,7 @@ export default function Home() {
                 fill
                 sizes="220px"
                 className="object-contain brightness-0 invert drop-shadow-[0_0_14px_rgba(255,255,255,0.9)] translate-y-8"
+                draggable={false}
                 priority
               />
             </div>
@@ -490,6 +507,7 @@ export default function Home() {
                   fill
                   sizes="(max-width: 768px) 60vw, 320px"
                   className="object-contain brightness-0 invert drop-shadow-[0_0_18px_rgba(255,255,255,0.8)]"
+                  draggable={false}
                   priority
                 />
               </div>
@@ -530,6 +548,7 @@ export default function Home() {
               width={1600}
               height={900}
               className="h-full w-full object-cover"
+              draggable={false}
               sizes="(max-width: 1024px) 100vw, 1200px"
             />
           </div>
@@ -599,6 +618,7 @@ export default function Home() {
                       fill
                       sizes="(max-width: 1024px) 100vw, 360px"
                       className="object-cover transition duration-300 group-hover:brightness-[0.55]"
+                      draggable={false}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/38 via-black/10 to-transparent transition duration-300 group-hover:bg-[var(--wine-strong)]/45" />
                     <div className="absolute inset-0 grid place-items-center opacity-0 transition duration-300 group-hover:opacity-100">
@@ -666,6 +686,7 @@ export default function Home() {
                   fill
                   sizes="80px"
                   className="object-cover"
+                  draggable={false}
                 />
               </div>
               <p className="text-sm font-semibold text-[var(--wine-strong)] tracking-[0.08em] uppercase">{reviewList[currentReview].name}</p>
@@ -873,7 +894,7 @@ export default function Home() {
 
           <div className="w-full border-t border-[var(--cream-soft)]/25" />
           <p className="text-xs text-[var(--cream-soft)]/75 text-center w-full">
-            © Mi Vocho 2026 | Hecho por AAL1X
+            © Mi Vocho 2026 | Hecho por <a href="https://aal1x.com" target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">AAL1X</a>
           </p>
         </div>
       </footer>
