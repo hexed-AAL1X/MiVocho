@@ -485,6 +485,7 @@ export default function Home() {
           sizes="100vw"
           className="object-cover"
           draggable={false}
+          fetchPriority="high"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
@@ -502,6 +503,7 @@ export default function Home() {
                 sizes="220px"
                 className="object-contain brightness-0 invert drop-shadow-[0_0_14px_rgba(255,255,255,0.9)] translate-y-8"
                 draggable={false}
+                fetchPriority="high"
                 priority
               />
             </div>
@@ -531,6 +533,7 @@ export default function Home() {
                   sizes="(max-width: 768px) 60vw, 320px"
                   className="object-contain brightness-0 invert drop-shadow-[0_0_18px_rgba(255,255,255,0.8)]"
                   draggable={false}
+                  fetchPriority="high"
                   priority
                 />
               </div>
