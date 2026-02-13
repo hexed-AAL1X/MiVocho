@@ -347,6 +347,9 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const reduceMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
     const lenis = new Lenis({
       duration: 1.1,
       smoothWheel: true,
@@ -387,7 +390,17 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-3 md:px-5 md:py-4 lg:px-7">
           <div className="flex items-center gap-3">
             <div className="relative h-14 w-40 shrink-0 md:h-[72px] md:w-[208px]">
-              <Image src="/mivocho2.webp" alt="Mi Vocho" fill className={logoClass} priority sizes="200px" draggable={false} />
+              <Image
+                src="/mivocho2.webp"
+                alt="Mi Vocho"
+                fill
+                className={logoClass}
+                priority
+                fetchPriority="high"
+                loading="eager"
+                sizes="200px"
+                draggable={false}
+              />
             </div>
           </div>
           <nav className={`hidden items-center text-[0.72rem] font-semibold uppercase tracking-[0.18em] ${navTextColor} md:ml-8 md:flex ml-4`}>
@@ -486,9 +499,10 @@ export default function Home() {
           className="object-cover"
           draggable={false}
           fetchPriority="high"
+          loading="eager"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/55" />
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[var(--cream)]/25 to-[var(--cream)]" />
 
