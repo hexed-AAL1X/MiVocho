@@ -807,17 +807,29 @@ export default function Home() {
           </div>
 
           <div className="mx-auto max-w-6xl">
-            <div className="relative overflow-hidden rounded-2xl border border-[var(--wine)]/15 shadow-xl">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.880679152602!2d-77.0240!3d-12.0939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c87c6f9615e3%3A0x123456789abcdef!2sCalle%20Armando%20Blondet%20252%2C%20San%20Isidro%2C%20Peru!5e0!3m2!1ses-419!2spe!4v1700000000000"
-                width="100%"
-                height="420"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Mapa de Mi Vocho"
-              />
+            <div className="relative overflow-hidden rounded-2xl border border-[var(--wine)]/15 bg-gradient-to-br from-[var(--cream)] via-white to-[var(--cream)] shadow-xl p-6 md:p-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-2">
+                <h3 className="text-xl md:text-2xl font-[var(--font-cinzel)] text-[var(--wine-strong)]" style={{ fontFamily: '"Cinzel", var(--font-cinzel), serif' }}>
+                  {lang === "es" ? "Encuéntranos en San Isidro" : "Find us in San Isidro"}
+                </h3>
+                <p className="text-[var(--text)]/80 font-[var(--font-body)]">
+                  {lang === "es"
+                    ? "Abrir en Google Maps para indicaciones rápidas."
+                    : "Open in Google Maps for quick directions."}
+                </p>
+              </div>
+              <a
+                href="https://www.google.com/maps/place/Calle+Armando+Blondet+252,+San+Isidro"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--wine-strong)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--cream)] shadow-md transition hover:scale-[1.02]"
+              >
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M12 21s-6-5.686-6-10.8A6 6 0 0118 10.2C18 15.314 12 21 12 21z" />
+                  <circle cx="12" cy="10" r="2.4" />
+                </svg>
+                {lang === "es" ? "Ver en Google Maps" : "View on Google Maps"}
+              </a>
             </div>
           </div>
         </section>
