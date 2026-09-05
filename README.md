@@ -14,150 +14,149 @@
    <img src="src/app/favicon.ico" alt="Logo" width="120">
    <h3 align="center">Mi Vocho</h3>
    <p align="center">
-     Landing page for a Peruvian seafood restaurant — bilingual, smooth and on-brand
+     Landing page de un restaurante de cocina marina peruana — bilingüe, fluida y con identidad propia
      <br>
-     <a href="https://github.com/hexed-AAL1X/_MiVocho_"><strong>Explore the docs »</strong></a>
+     <a href="https://github.com/hexed-AAL1X/_MiVocho_"><strong>Explorar la documentación »</strong></a>
      <br>
      <br>
-     <a href="https://github.com/hexed-AAL1X/_MiVocho_">View Demo</a>
+     <a href="https://github.com/hexed-AAL1X/_MiVocho_">Ver demo</a>
      ·
-     <a href="https://github.com/hexed-AAL1X/_MiVocho_/issues/new?labels=bug">Report Bug</a>
+     <a href="https://github.com/hexed-AAL1X/_MiVocho_/issues/new?labels=bug">Reportar bug</a>
      ·
-     <a href="https://github.com/hexed-AAL1X/_MiVocho_/issues/new?labels=enhancement">Request Feature</a>
+     <a href="https://github.com/hexed-AAL1X/_MiVocho_/issues/new?labels=enhancement">Pedir una mejora</a>
    </p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Tabla de contenidos</summary>
   <ol>
     <li>
-      <a href="#about-the-proyect">About The Project</a>
+      <a href="#sobre-el-proyecto">Sobre el proyecto</a>
       <ul>
         <li>
-          <a href="#built-with">Built With</a>
+          <a href="#construido-con">Construido con</a>
         </li>
       </ul>
     </li>
-    <li><a href="#important-notices">Important Notices</a></li>
+    <li><a href="#avisos-importantes">Avisos importantes</a></li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#primeros-pasos">Primeros pasos</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#requisitos">Requisitos</a></li>
+        <li><a href="#instalacion">Instalación</a></li>
       </ul>
     </li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contribuir">Contribuir</a></li>
+    <li><a href="#contacto">Contacto</a></li>
   </ol>
 </details>
 <br>
 
 <!-- ABOUT THE PROJECT -->
-<a id="about-the-proyect"></a>***About The Project***
+<a id="sobre-el-proyecto"></a>***Sobre el proyecto***
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 <div align="center">
-  <img src="public/assets/home.png" alt="Mi Vocho Home" width="720">
+  <img src="public/assets/home.png" alt="Home de Mi Vocho" width="720">
 </div>
 
-**Mi Vocho** is a modern frontend for a Peruvian seafood restaurant brand. The site focuses on atmosphere, bilingual content (ES/EN), smooth scrolling, and a clear path to reserve — cocina marina with a warm, home-cooked feel.
+**Mi Vocho** es el frontend moderno de un restaurante de cocina marina peruana. El sitio prioriza la atmósfera, el contenido bilingüe (ES/EN), una navegación fluida y un camino claro para reservar — sabores de mar con calidez de casa.
 
-Here's why:
+Por qué existe:
 
-* Present the restaurant brand with a strong first viewport: hero, identity, and a single clear CTA.
-* Showcase the menu, testimonials, location and WhatsApp booking in one polished composition.
-* Keep the stack lean (Next.js + React + Tailwind) so the experience stays fast and easy to iterate.
+* Presentar la marca del restaurante con un primer viewport fuerte: hero, identidad y un CTA claro.
+* Mostrar la carta, testimonios, ubicación y reservas por WhatsApp en una composición pulida.
+* Mantener un stack ligero (Next.js + React + Tailwind) para que la experiencia sea rápida y fácil de iterar.
 
-This is the frontend package of the Mi Vocho project. Expect ongoing polish on motion, copy and UX.
+Este es el paquete frontend del proyecto Mi Vocho. Esperamos seguir puliendo motion, copy y UX.
 
-<a id="built-with"></a> 
-### Built With
+<a id="construido-con"></a> 
+### Construido con
 * ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)&nbsp;
 * ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
 * ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)&nbsp;
 * ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2F6?style=for-the-badge&logo=tailwind-css&logoColor=white)&nbsp;
-* ![Lenis](https://img.shields.io/badge/Lenis-Smooth_Scroll-111111?style=for-the-badge)&nbsp;
 * ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)&nbsp;
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
 <!-- IMPORTANT NOTICES -->
-<a id="important-notices"></a>***Important Notices***
+<a id="avisos-importantes"></a>***Avisos importantes***
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 > [!NOTE]  
-> To install and run **Mi Vocho**, make sure you have the following:
+> Para instalar y ejecutar **Mi Vocho**, asegúrate de tener lo siguiente:
 > 
-> | Requirement        | Description                                                                                       |
+> | Requisito          | Descripción                                                                                       |
 > |--------------------|---------------------------------------------------------------------------------------------------|
 > | Runtime            | ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white&color=black)  |
-> | Package manager    | ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white&color=black) |
+> | Gestor de paquetes | ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white&color=black) |
 > | Framework          | ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white&color=black)              |
  
 > [!IMPORTANT]\
-> We are a small team committed to improving Mi Vocho. Expect continuous updates to polish performance, visuals and booking flow.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+> Somos un equipo pequeño comprometido con mejorar Mi Vocho. Espera actualizaciones continuas en rendimiento, visuales y flujo de reservas.
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
 <!-- GETTING STARTED -->
-<a id="getting-started"></a>***Getting Started***
+<a id="primeros-pasos"></a>***Primeros pasos***
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-These are instructions on how to configure your project locally. To get a local copy up and running, follow these simple example steps.
+Estas son instrucciones para configurar el proyecto en local. Para tener una copia funcionando, sigue estos pasos.
 
-<a id="prerequisites"></a>
-### Prerequisites
-These are the items needed to use the software and how to install them:
-* [Node.js](https://nodejs.org/) (LTS recommended)
-* npm (comes with Node.js)
+<a id="requisitos"></a>
+### Requisitos
+Lo necesario para usar el software y cómo instalarlo:
+* [Node.js](https://nodejs.org/) (se recomienda LTS)
+* npm (incluido con Node.js)
 
-<a id="installation"></a>
-### Installation
-_Below is an example of how to install and configure Mi Vocho on your local machine._
+<a id="instalacion"></a>
+### Instalación
+_Ejemplo de cómo instalar y configurar Mi Vocho en tu máquina local._
 
-1. Clone the repository
+1. Clona el repositorio
    ```sh
    git clone https://github.com/hexed-AAL1X/_MiVocho_.git
    ```
-2. Navigate to the project directory
+2. Entra al directorio del proyecto
    ```sh
    cd _MiVocho_
    ```
-3. Install dependencies
+3. Instala las dependencias
    ```sh
    npm install
    ```
-4. Start the development server
+4. Arranca el servidor de desarrollo
    ```sh
    npm run dev
    ```
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
-6. (Optional) Change the Git remote URL to prevent accidental pushes to the base project
+5. Abre [http://localhost:3000](http://localhost:3000) en el navegador
+6. (Opcional) Cambia la URL del remoto de Git para evitar pushes accidentales al proyecto base
    ```sh
    git remote set-url origin https://github.com/tu_usuario/_MiVocho_
-   git remote -v # confirm the changes
+   git remote -v # confirmar los cambios
    ```
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
 <!-- CONTRIBUTING -->
-<a id="contributing"></a>***Contributing***
+<a id="contribuir"></a>***Contribuir***
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-Contributions are what make the open source community an amazing place to learn, be inspired, and create. Any contribution you wish to make is very welcome!
+Las contribuciones hacen de la comunidad open source un lugar increíble para aprender, inspirarse y crear. ¡Cualquier aporte es bienvenido!
 
-If you have a suggestion to improve the project, you can fork the repository and open a pull request.
-Don't forget to give the project a star! Thanks for contributing!
+Si tienes una sugerencia para mejorar el proyecto, puedes hacer fork del repositorio y abrir un pull request.
+¡No olvides darle una estrella al proyecto! Gracias por contribuir.
 
-1. Fork the project.
-2. Create a branch for your improvement (`git checkout -b feature/NewImprovement`).
-3. Make your changes and commit (`git commit -m 'Add New Improvement'`).
-4. Push your changes to the branch (`git push origin feature/NewImprovement`).
-5. Open a pull request.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+1. Haz fork del proyecto.
+2. Crea una rama para tu mejora (`git checkout -b feature/NuevaMejora`).
+3. Haz tus cambios y un commit (`git commit -m 'Add Nueva Mejora'`).
+4. Sube los cambios a la rama (`git push origin feature/NuevaMejora`).
+5. Abre un pull request.
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
 <!-- CONTACT -->
-<a id="contact"></a>***Contact***
+<a id="contacto"></a>***Contacto***
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 <p align="center">
   <a href="mailto:hexed_aal1x.ops@proton.me"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white&color=black" /></a>
   <a href="https://www.instagram.com/hexed_aal1x"><img src="https://img.shields.io/badge/instagram-%2312100E.svg?&style=for-the-badge&logo=instagram&logoColor=white&color=black" /></a>
   <a href="https://www.linkedin.com/in/leonardo-bravo-4120b8228/"><img src="https://img.shields.io/badge/linkedin-%2312100E.svg?&style=for-the-badge&logo=linkedin&logoColor=white&color=black" /></a>
 </p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
