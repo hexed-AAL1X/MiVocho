@@ -11,7 +11,7 @@
 <!-- PROJECT LOGO -->
 <br>
 <div align="center">
-   <img src="src/app/favicon.ico" alt="Logo" width="320">
+   <img src="src/app/favicon.ico" alt="Logo" width="300">
    <h3 align="center">Mi Vocho</h3>
    <p align="center">
      Landing page de un restaurante de cocina marina peruana — bilingüe, fluida y con identidad propia
