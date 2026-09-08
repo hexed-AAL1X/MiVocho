@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Mi Vocho | Restaurante & Cevichería en San Isidro",
+    default: "Mi Vocho",
     template: "%s | Mi Vocho",
   },
   description:
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     url: SITE_URL,
     siteName: "Mi Vocho",
-    title: "Mi Vocho | Restaurante & Cevichería en San Isidro",
+    title: "Mi Vocho",
     description:
       "Sabores de mar con acento peruano. Carta, reseñas, ubicación y reservas por WhatsApp.",
     images: [
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mi Vocho | Restaurante & Cevichería en San Isidro",
+    title: "Mi Vocho",
     description:
       "Sabores de mar con acento peruano. Carta, reseñas, ubicación y reservas por WhatsApp.",
     images: ["/fondo.webp"],
@@ -101,7 +101,7 @@ const restaurantJsonLd = {
   description:
     "Cocina marina peruana en San Isidro: pescados y mariscos frescos, carta clásica y reservas por WhatsApp.",
   url: SITE_URL,
-  image: [`${SITE_URL}/fondo.webp`, `${SITE_URL}/logito.webp`],
+  image: [`${SITE_URL}/fondo.webp`, `${SITE_URL}/logito.png`],
   telephone: "+51997564652",
   email: "vochocevicheria@gmail.com",
   servesCuisine: ["Peruvian", "Seafood"],

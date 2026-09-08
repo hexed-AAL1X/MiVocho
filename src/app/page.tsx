@@ -345,9 +345,7 @@ export default function Home() {
 
   const navTextColor = scrolled ? "text-[var(--footer-text)]" : "text-[var(--cream-soft)]";
   const navDivider = scrolled ? "divide-[var(--footer-text)]/30" : "divide-[var(--cream-soft)]/30";
-  const logoClass = scrolled
-    ? "object-contain"
-    : "object-contain brightness-0 invert drop-shadow";
+  const headerLogoSrc = scrolled ? "/mivocho2.png" : "/mivocho2-white.png";
 
   const text = copy[lang];
   const langFlag = lang === "es" ? "🇪🇸" : "🇺🇸";
@@ -360,14 +358,14 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <div className="relative h-14 w-40 shrink-0 md:h-[72px] md:w-[208px]">
               <Image
-                src="/mivocho2.webp"
+                src={headerLogoSrc}
                 alt="Mi Vocho"
                 fill
-                className={logoClass}
+                className="object-contain drop-shadow"
                 priority
                 fetchPriority="high"
                 sizes="200px"
-                quality={75}
+                unoptimized
                 draggable={false}
               />
             </div>
@@ -494,15 +492,15 @@ export default function Home() {
           <div className="flex h-full flex-col items-center justify-center gap-5 px-6 pt-10 text-white md:hidden translate-y-[-4vh]">
             <div className="relative h-44 w-44 mt-4" style={{ animation: "fadeUp 1s ease forwards" }}>
               <Image
-                src="/logito.webp"
+                src="/logito-white.png"
                 alt="Mi Vocho"
                 fill
                 sizes="220px"
-                className="object-contain brightness-0 invert drop-shadow-[0_0_14px_rgba(255,255,255,0.9)] translate-y-8"
+                className="object-contain drop-shadow-[0_0_14px_rgba(255,255,255,0.9)] translate-y-8"
                 draggable={false}
                 fetchPriority="high"
                 priority
-                quality={75}
+                unoptimized
               />
             </div>
             <div
@@ -525,15 +523,15 @@ export default function Home() {
             <div className="mt-30 flex flex-col items-center md:mt-34 lg:mt-38" style={{ animation: "fadeUp 1s ease forwards" }}>
               <div className="relative h-72 w-72 md:h-96 md:w-96 lg:h-[26rem] lg:w-[26rem]">
                 <Image
-                  src="/logito.webp"
+                  src="/logito-white.png"
                   alt="Mi Vocho"
                   fill
                   sizes="(max-width: 768px) 60vw, 320px"
-                  className="object-contain brightness-0 invert drop-shadow-[0_0_18px_rgba(255,255,255,0.8)]"
+                  className="object-contain drop-shadow-[0_0_18px_rgba(255,255,255,0.8)]"
                   draggable={false}
                   fetchPriority="high"
                   priority
-                  quality={75}
+                  unoptimized
                 />
               </div>
               <div
