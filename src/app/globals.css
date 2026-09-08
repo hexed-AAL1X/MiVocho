@@ -2,14 +2,14 @@
 @import "lenis/dist/lenis.css";
 
 :root {
-  --cream: #f6f1eb; /* base hueso suave */
-  --cream-soft: #e8ddcf; /* beige claro secundario */
-  --wine: #6a5c52; /* acento neutro inspirado en logo */
-  --wine-strong: #4a413a; /* acento principal oscuro */
-  --gold: #bfa47a; /* detalle metalizado cálido */
-  --text: #3a332f; /* texto gris tostado */
-  --footer-bg: #f6f1eb; /* mismo fondo que la página */
-  --footer-text: #4a413a; /* texto y líneas footer */
+  --cream: #f6f1eb;
+  --cream-soft: #e8ddcf;
+  --wine: #6a5c52;
+  --wine-strong: #4a413a;
+  --gold: #bfa47a;
+  --text: #3a332f;
+  --footer-bg: #f6f1eb;
+  --footer-text: #4a413a;
 }
 
 .animate-slide-in-left {
@@ -33,7 +33,6 @@ body {
   font-family: var(--font-body), sans-serif;
 }
 
-/* Scrollbar en paleta del sitio */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--wine-strong) var(--cream);
@@ -55,20 +54,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--wine);
-}
-
-.wave-motion {
-  animation: waveFloat 7s ease-in-out infinite;
-}
-
-@keyframes waveFloat {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(12px);
-  }
 }
 
 @keyframes fadeDown {
@@ -111,4 +96,12 @@ body {
 .hero-line {
   transform-origin: center;
   animation: lineReveal 1s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-in-left,
+  .hero-line,
+  header {
+    animation: none !important;
+  }
 }
