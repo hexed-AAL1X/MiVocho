@@ -339,7 +339,6 @@ export default function Home() {
 
   const navTextColor = scrolled ? "text-[var(--footer-text)]" : "text-[var(--cream-soft)]";
   const navDivider = scrolled ? "divide-[var(--footer-text)]/30" : "divide-[var(--cream-soft)]/30";
-  const headerLogoSrc = scrolled ? "/mivocho2.webp" : "/mivocho2-white.webp";
 
   const text = copy[lang];
   const langFlag = lang === "es" ? "🇪🇸" : "🇺🇸";
@@ -352,15 +351,31 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <div className="relative h-14 w-[180px] shrink-0 md:h-[72px] md:w-[234px]">
               <Image
-                src={headerLogoSrc}
+                src="/mivocho2-header-white.png"
                 alt="Mi Vocho"
-                width={416}
-                height={127}
-                className="h-full w-full object-contain drop-shadow"
+                width={468}
+                height={143}
+                className={`absolute inset-0 h-full w-full object-contain drop-shadow transition-opacity duration-300 ${
+                  scrolled ? "opacity-0" : "opacity-100"
+                }`}
                 priority
                 fetchPriority="high"
-                sizes="(max-width: 768px) 180px, 234px"
-                quality={85}
+                sizes="234px"
+                unoptimized
+                draggable={false}
+              />
+              <Image
+                src="/mivocho2-header.png"
+                alt=""
+                width={468}
+                height={143}
+                aria-hidden
+                className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${
+                  scrolled ? "opacity-100" : "opacity-0"
+                }`}
+                priority
+                sizes="234px"
+                unoptimized
                 draggable={false}
               />
             </div>
