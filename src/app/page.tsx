@@ -212,6 +212,7 @@ export default function Home() {
   const heroTopRef = useRef<HTMLDivElement | null>(null);
   const reviewTimerRef = useRef<NodeJS.Timeout | null>(null);
   const cartaRowRef = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<HTMLDivElement | null>(null);
   const [mapVisible, setMapVisible] = useState(false);
 
   useEffect(() => {
@@ -223,6 +224,28 @@ export default function Home() {
       { threshold: 0 }
     );
 
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const isDesktop =
+      typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
+    if (isDesktop) {
+      setMapVisible(true);
+      return;
+    }
+    const target = mapRef.current;
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMapVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
     observer.observe(target);
     return () => observer.disconnect();
   }, []);
@@ -545,14 +568,14 @@ export default function Home() {
 
           <div className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-xl shadow-xl">
             <Image
-              src="/food.webp"
-              alt="Platos de cocina marina en Mi Vocho"
-              width={1200}
+              src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80"
+              alt="Equipo de cocina trabajando en Mi Vocho"
+              width={1600}
               height={900}
               className="h-full w-full object-cover"
               draggable={false}
-              sizes="(max-width: 1024px) 100vw, 1152px"
-              quality={70}
+              sizes="(max-width: 1024px) 100vw, 1200px"
+              quality={75}
             />
           </div>
         </section>
@@ -811,7 +834,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-6xl" ref={mapRef}>
             <div className="relative overflow-hidden rounded-2xl border border-[var(--wine)]/15 bg-gradient-to-br from-[var(--cream)] via-white to-[var(--cream)] shadow-xl p-5 md:p-6">
               <div className="space-y-2">
                 <h3 className="text-xl md:text-2xl font-[var(--font-cinzel)] text-[var(--wine-strong)]" style={{ fontFamily: '"Cinzel", var(--font-cinzel), serif' }}>
@@ -838,27 +861,9 @@ export default function Home() {
                       title={lang === "es" ? "Mapa de Mi Vocho" : "Mi Vocho map"}
                     />
                   ) : (
-                    <button
-                      type="button"
-                      onClick={() => setMapVisible(true)}
-                      className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[var(--cream-soft)]/40 px-6 text-center transition hover:bg-[var(--cream-soft)]/60"
-                      aria-label={lang === "es" ? "Cargar mapa interactivo" : "Load interactive map"}
-                    >
-                      <Image
-                        src="/fondo.webp"
-                        alt=""
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 1152px"
-                        className="object-cover opacity-40"
-                        quality={50}
-                      />
-                      <span className="relative z-10 rounded-full bg-[var(--wine-strong)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--cream)] shadow-md">
-                        {lang === "es" ? "Cargar mapa" : "Load map"}
-                      </span>
-                      <span className="relative z-10 text-xs text-[var(--text)]/70">
-                        {lang === "es" ? "Se abrirá Google Maps aquí" : "Google Maps will open here"}
-                      </span>
-                    </button>
+                    <div className="absolute inset-0 grid place-items-center text-[var(--text)]/70 font-[var(--font-body)]">
+                      {lang === "es" ? "Cargando mapa…" : "Loading map…"}
+                    </div>
                   )}
                 </div>
                 <a
