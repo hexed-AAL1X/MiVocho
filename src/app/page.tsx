@@ -229,12 +229,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const isDesktop =
-      typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
-    if (isDesktop) {
-      setMapVisible(true);
-      return;
-    }
     const target = mapRef.current;
     if (!target) return;
     const observer = new IntersectionObserver(
@@ -244,7 +238,7 @@ export default function Home() {
           observer.disconnect();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "300px 0px" }
     );
     observer.observe(target);
     return () => observer.disconnect();
@@ -345,7 +339,7 @@ export default function Home() {
 
   const navTextColor = scrolled ? "text-[var(--footer-text)]" : "text-[var(--cream-soft)]";
   const navDivider = scrolled ? "divide-[var(--footer-text)]/30" : "divide-[var(--cream-soft)]/30";
-  const headerLogoSrc = scrolled ? "/mivocho2.png" : "/mivocho2-white.png";
+  const headerLogoSrc = scrolled ? "/mivocho2.webp" : "/mivocho2-white.webp";
 
   const text = copy[lang];
   const langFlag = lang === "es" ? "🇪🇸" : "🇺🇸";
@@ -356,16 +350,17 @@ export default function Home() {
       <header className={headerClass} style={{ animation: "fadeDown 0.9s ease forwards" }}>
         <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-3 md:px-5 md:py-4 lg:px-7">
           <div className="flex items-center gap-3">
-            <div className="relative h-14 w-40 shrink-0 md:h-[72px] md:w-[208px]">
+            <div className="relative h-14 w-[180px] shrink-0 md:h-[72px] md:w-[234px]">
               <Image
                 src={headerLogoSrc}
                 alt="Mi Vocho"
-                fill
-                className="object-contain drop-shadow"
+                width={416}
+                height={127}
+                className="h-full w-full object-contain drop-shadow"
                 priority
                 fetchPriority="high"
-                sizes="200px"
-                unoptimized
+                sizes="(max-width: 768px) 180px, 234px"
+                quality={85}
                 draggable={false}
               />
             </div>
@@ -490,17 +485,18 @@ export default function Home() {
         <div className="relative z-10 h-full">
           {/* Hero móvil: logo, línea tricolor debajo y texto debajo de la línea */}
           <div className="flex h-full flex-col items-center justify-center gap-5 px-6 pt-10 text-white md:hidden translate-y-[-4vh]">
-            <div className="relative h-44 w-44 mt-4" style={{ animation: "fadeUp 1s ease forwards" }}>
+            <div className="relative mt-4 w-[min(90vw,22rem)] aspect-[822/133]" style={{ animation: "fadeUp 1s ease forwards" }}>
               <Image
-                src="/logito-white.png"
+                src="/logito-white.webp"
                 alt="Mi Vocho"
-                fill
-                sizes="220px"
-                className="object-contain drop-shadow-[0_0_14px_rgba(255,255,255,0.9)] translate-y-8"
+                width={822}
+                height={133}
+                sizes="(max-width: 768px) 90vw, 352px"
+                className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(255,255,255,0.9)] translate-y-8"
                 draggable={false}
                 fetchPriority="high"
                 priority
-                unoptimized
+                quality={85}
               />
             </div>
             <div
@@ -521,21 +517,22 @@ export default function Home() {
           {/* Hero desktop/laptop (sin cambios) */}
           <div className="hidden h-full items-start justify-center px-6 pt-12 md:flex md:px-12 md:pt-16 lg:px-16 lg:pt-20">
             <div className="mt-30 flex flex-col items-center md:mt-34 lg:mt-38" style={{ animation: "fadeUp 1s ease forwards" }}>
-              <div className="relative h-72 w-72 md:h-96 md:w-96 lg:h-[26rem] lg:w-[26rem]">
+              <div className="relative w-[28rem] max-w-[80vw] aspect-[822/133] md:w-[32rem] lg:w-[36rem]">
                 <Image
-                  src="/logito-white.png"
+                  src="/logito-white.webp"
                   alt="Mi Vocho"
-                  fill
-                  sizes="(max-width: 768px) 60vw, 320px"
-                  className="object-contain drop-shadow-[0_0_18px_rgba(255,255,255,0.8)]"
+                  width={822}
+                  height={133}
+                  sizes="(max-width: 1024px) 28rem, 36rem"
+                  className="h-full w-full object-contain drop-shadow-[0_0_18px_rgba(255,255,255,0.8)]"
                   draggable={false}
                   fetchPriority="high"
                   priority
-                  unoptimized
+                  quality={85}
                 />
               </div>
               <div
-                className="hero-line -mt-35 h-[6px] w-[28rem] rounded-full ring-1 ring-white/30 shadow-[0_6px_18px_rgba(0,0,0,0.28)] md:h-[7px] md:w-[28rem]"
+                className="hero-line mt-6 h-[6px] w-[28rem] max-w-[90%] rounded-full ring-1 ring-white/30 shadow-[0_6px_18px_rgba(0,0,0,0.28)] md:h-[7px] md:w-[28rem]"
                 style={{
                   background:
                     "linear-gradient(90deg, #c41230 0%, #c41230 33.33%, #ffffff 33.33%, #ffffff 66.66%, #c41230 66.66%, #c41230 100%)",
