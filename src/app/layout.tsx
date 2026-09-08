@@ -101,7 +101,7 @@ const restaurantJsonLd = {
   description:
     "Cocina marina peruana en San Isidro: pescados y mariscos frescos, carta clásica y reservas por WhatsApp.",
   url: SITE_URL,
-  image: [`${SITE_URL}/fondo.webp`, `${SITE_URL}/logito.png`],
+  image: [`${SITE_URL}/fondo.webp`, `${SITE_URL}/logito-white.webp`],
   telephone: "+51997564652",
   email: "vochocevicheria@gmail.com",
   servesCuisine: ["Peruvian", "Seafood"],
