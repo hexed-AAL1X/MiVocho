@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import Lenis from "lenis";
 
 const copy = {
   es: {
@@ -117,29 +116,6 @@ const copy = {
   },
 };
 
-const menuHighlights = [
-  {
-    title: "Pulpo a las brasas",
-    description: "Con puré de coliflor rostizada y aceite de chile de árbol.",
-    price: "$320",
-  },
-  {
-    title: "Risotto de hongos",
-    description: "Arborio con setas de temporada, parmesano madurado y mantequilla de salvia.",
-    price: "$280",
-  },
-  {
-    title: "Tiradito de hamachi",
-    description: "Leche de tigre cítrica, pepino encurtido y ajonjolí tostado.",
-    price: "$310",
-  },
-  {
-    title: "Panna cotta de vainilla",
-    description: "Compota de frutos rojos, crumble de almendra y menta fresca.",
-    price: "$160",
-  },
-];
-
 const cartaSlides = [
   {
     src: "/food.webp",
@@ -228,21 +204,6 @@ const reviews = {
   ],
 };
 
-const gallery = [
-  {
-    src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
-    alt: "Mesa servida con vino y platillos.",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=1200&q=80",
-    alt: "Plato principal con salsa y hierbas frescas.",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80",
-    alt: "Mesa de restaurante con copas y platos listos.",
-  },
-];
-
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -251,7 +212,6 @@ export default function Home() {
   const heroTopRef = useRef<HTMLDivElement | null>(null);
   const reviewTimerRef = useRef<NodeJS.Timeout | null>(null);
   const cartaRowRef = useRef<HTMLDivElement | null>(null);
-  const mapRef = useRef<HTMLDivElement | null>(null);
   const [mapVisible, setMapVisible] = useState(false);
 
   useEffect(() => {
@@ -263,27 +223,6 @@ export default function Home() {
       { threshold: 0 }
     );
 
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const isDesktop = typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
-    if (isDesktop) {
-      setMapVisible(true);
-      return;
-    }
-    const target = mapRef.current;
-    if (!target) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setMapVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" }
-    );
     observer.observe(target);
     return () => observer.disconnect();
   }, []);
@@ -347,24 +286,31 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const reduceMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion =
+      typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
 
-    const lenis = new Lenis({
-      duration: 1.1,
-      smoothWheel: true,
+    let frame = 0;
+    let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
+    let cancelled = false;
+
+    void import("lenis").then(({ default: Lenis }) => {
+      if (cancelled) return;
+      lenis = new Lenis({
+        duration: 1.1,
+        smoothWheel: true,
+      });
+      const raf = (time: number) => {
+        lenis?.raf(time);
+        frame = requestAnimationFrame(raf);
+      };
+      frame = requestAnimationFrame(raf);
     });
 
-    let frame: number;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
-    };
-
-    frame = requestAnimationFrame(raf);
     return () => {
+      cancelled = true;
       cancelAnimationFrame(frame);
-      lenis.destroy();
+      lenis?.destroy();
     };
   }, []);
 
@@ -397,8 +343,8 @@ export default function Home() {
                 className={logoClass}
                 priority
                 fetchPriority="high"
-                loading="eager"
                 sizes="200px"
+                quality={75}
                 draggable={false}
               />
             </div>
@@ -478,10 +424,24 @@ export default function Home() {
                 <button
                   type="button"
                   className="flex w-full items-center gap-2 px-3 py-2 text-left text-[var(--text)] transition hover:bg-[var(--wine)]/10"
-                  onClick={() => setLangOpen(false)}
+                  onClick={() => {
+                    setLang("en");
+                    setLangOpen(false);
+                  }}
                 >
                   <span className="text-lg leading-none">🇺🇸</span>
                   <span className="text-[0.75rem] font-semibold uppercase tracking-[0.12em]">EN</span>
+                </button>
+                <button
+                  type="button"
+                  className="flex w-full items-center gap-2 px-3 py-2 text-left text-[var(--text)] transition hover:bg-[var(--wine)]/10"
+                  onClick={() => {
+                    setLang("es");
+                    setLangOpen(false);
+                  }}
+                >
+                  <span className="text-lg leading-none">🇪🇸</span>
+                  <span className="text-[0.75rem] font-semibold uppercase tracking-[0.12em]">ES</span>
                 </button>
               </div>
             )}
@@ -499,8 +459,8 @@ export default function Home() {
           className="object-cover"
           draggable={false}
           fetchPriority="high"
-          loading="eager"
           priority
+          quality={70}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/55" />
 
@@ -519,6 +479,7 @@ export default function Home() {
                 draggable={false}
                 fetchPriority="high"
                 priority
+                quality={75}
               />
             </div>
             <div
@@ -549,6 +510,7 @@ export default function Home() {
                   draggable={false}
                   fetchPriority="high"
                   priority
+                  quality={75}
                 />
               </div>
               <div
@@ -583,13 +545,14 @@ export default function Home() {
 
           <div className="mx-auto mt-10 max-w-6xl overflow-hidden rounded-xl shadow-xl">
             <Image
-              src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80"
-              alt="Equipo de cocina trabajando en Mi Vocho"
-              width={1600}
+              src="/food.webp"
+              alt="Platos de cocina marina en Mi Vocho"
+              width={1200}
               height={900}
               className="h-full w-full object-cover"
               draggable={false}
-              sizes="(max-width: 1024px) 100vw, 1200px"
+              sizes="(max-width: 1024px) 100vw, 1152px"
+              quality={70}
             />
           </div>
         </section>
@@ -640,7 +603,7 @@ export default function Home() {
               ref={cartaRowRef}
               className="relative flex w-full gap-4 overflow-hidden px-1"
             >
-              {cartaSlides.map((item) => (
+              {cartaSlides.map((item, index) => (
                 <div
                   key={item.src}
                   className="group flex min-w-[230px] max-w-[320px] flex-[0_0_70vw] sm:flex-[0_0_48%] lg:flex-[0_0_32%] flex-col overflow-hidden bg-[var(--footer-bg)]/90 shadow-xl"
@@ -648,7 +611,7 @@ export default function Home() {
                   <a
                     href="https://www.instagram.com/vochocevicheria/"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     aria-label="Ver en Instagram"
                     className="relative block aspect-[4/3] w-full"
                   >
@@ -656,9 +619,10 @@ export default function Home() {
                       src={item.src}
                       alt={item.alt}
                       fill
-                      sizes="(max-width: 1024px) 100vw, 360px"
+                      sizes="(max-width: 640px) 70vw, (max-width: 1024px) 48vw, 320px"
                       className="object-cover transition duration-300 group-hover:brightness-[0.55]"
                       draggable={false}
+                      quality={70}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/38 via-black/10 to-transparent transition duration-300 group-hover:bg-[var(--wine-strong)]/45" />
                     <div className="absolute inset-0 grid place-items-center opacity-0 transition duration-300 group-hover:opacity-100">
@@ -675,7 +639,7 @@ export default function Home() {
                     className="bg-[var(--wine-strong)] py-3 text-center text-sm font-semibold uppercase tracking-[0.2em] text-[var(--cream-soft)]"
                     style={{ fontFamily: '"Cinzel", var(--font-cinzel), serif' }}
                   >
-                    {text.cartaSlideTitles[cartaSlides.indexOf(item)] ?? item.title}
+                    {text.cartaSlideTitles[index] ?? item.title}
                   </div>
                 </div>
               ))}
@@ -727,6 +691,7 @@ export default function Home() {
                   sizes="80px"
                   className="object-cover"
                   draggable={false}
+                  quality={65}
                 />
               </div>
               <p className="text-sm font-semibold text-[var(--wine-strong)] tracking-[0.08em] uppercase">{reviewList[currentReview].name}</p>
@@ -846,7 +811,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mx-auto max-w-6xl" ref={mapRef}>
+          <div className="mx-auto max-w-6xl">
             <div className="relative overflow-hidden rounded-2xl border border-[var(--wine)]/15 bg-gradient-to-br from-[var(--cream)] via-white to-[var(--cream)] shadow-xl p-5 md:p-6">
               <div className="space-y-2">
                 <h3 className="text-xl md:text-2xl font-[var(--font-cinzel)] text-[var(--wine-strong)]" style={{ fontFamily: '"Cinzel", var(--font-cinzel), serif' }}>
@@ -865,6 +830,7 @@ export default function Home() {
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.880679152602!2d-77.0240!3d-12.0939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c87c6f9615e3%3A0x123456789abcdef!2sCalle%20Armando%20Blondet%20252%2C%20San%20Isidro%2C%20Peru!5e0!3m2!1ses-419!2spe!4v1700000000000"
                       width="100%"
                       height="100%"
+                      className="absolute inset-0 h-full w-full"
                       style={{ border: 0 }}
                       allowFullScreen
                       loading="lazy"
@@ -872,18 +838,36 @@ export default function Home() {
                       title={lang === "es" ? "Mapa de Mi Vocho" : "Mi Vocho map"}
                     />
                   ) : (
-                    <div className="absolute inset-0 grid place-items-center text-[var(--text)]/70 font-[var(--font-body)]">
-                      {lang === "es" ? "Cargando mapa…" : "Loading map…"}
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setMapVisible(true)}
+                      className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[var(--cream-soft)]/40 px-6 text-center transition hover:bg-[var(--cream-soft)]/60"
+                      aria-label={lang === "es" ? "Cargar mapa interactivo" : "Load interactive map"}
+                    >
+                      <Image
+                        src="/fondo.webp"
+                        alt=""
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 1152px"
+                        className="object-cover opacity-40"
+                        quality={50}
+                      />
+                      <span className="relative z-10 rounded-full bg-[var(--wine-strong)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--cream)] shadow-md">
+                        {lang === "es" ? "Cargar mapa" : "Load map"}
+                      </span>
+                      <span className="relative z-10 text-xs text-[var(--text)]/70">
+                        {lang === "es" ? "Se abrirá Google Maps aquí" : "Google Maps will open here"}
+                      </span>
+                    </button>
                   )}
                 </div>
                 <a
                   href="https://www.google.com/maps/place/Calle+Armando+Blondet+252,+San+Isidro"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-[var(--wine-strong)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--cream)] shadow-md transition hover:scale-[1.02] md:hidden"
                 >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden>
                     <path d="M12 21s-6-5.686-6-10.8A6 6 0 0118 10.2C18 15.314 12 21 12 21z" />
                     <circle cx="12" cy="10" r="2.4" />
                   </svg>
